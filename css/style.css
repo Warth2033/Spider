@@ -38,9 +38,7 @@ a {
     margin: auto;
 }
 
-.add2 {
-    height: 200px;
-}
+
 
 .button_out {
     display: flex;
@@ -241,7 +239,7 @@ div#backToTop {
 }
 
 .contact-box button:hover {
-    background-color: #0f39cf;
+    background-color: #0fa2cf;
 }
 
 .add {
