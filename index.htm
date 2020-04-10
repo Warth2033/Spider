@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cnodejs</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+
+
+    <div class="jumbotron contact-box head_bak">
+        <div class="head"></div>
+            <h1 class="font_color">Cnodejs</h1>
+        </div>
+
+    </div>
+
+
+    <div id="maintext">
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer_box">
+            <div class="footer-box1">
+                <p class="h">友情链接</p>
+                
+            </div>
+
+        
+
+        </div>
+        <p class="copyright">&copy; Copyright 2020 ChenXin</p>
+        
+
+
+    </footer>
+    
+    <script>
+        window.onload = function () {
+            var jsonUrl = "https://cnodejs.org/api/v1/topics"; //json文件地址
+            var jsonRequest = new XMLHttpRequest();
+            jsonRequest.open("GET", jsonUrl);
+            jsonRequest.send(null);
+            jsonRequest.onload = function () {
+                if (jsonRequest.status == 200) {//若数据获取成功
+                    var json = JSON.parse(jsonRequest.responseText);
+                    
+                    for (var i = 0; i <= 10; i++) {
+                        document.getElementById("maintext").innerHTML += "\n\
+            <div class='contact-box  add'>\n\
+                <div class='content add2'>" +
+                            "<submit type='button' onclick='myClick("+ i +")'>" +
+                            json.data[i].title +
+                            "</submit>\n\
+                        </div>\n\
+                <span class='name'>" + "最后更新时间：" +
+                            Date(json.data[i].last_reply_at) +
+                            "</span>\n\
+                &nbsp;\n\
+                <span class='email'> " + "创建时间："
+                            + Date(json.data[i].create_at) +
+                            " </span>\n\
+                <span class='time'> " + "作者：" +
+                            json.data[i].author.loginname +
+                            "</span>\n\
+                &nbsp;\n\
+            </div>"
+                    }
+                }
+            };
+            function myClick(i) {
+                var json = JSON.parse(jsonRequest.responseText);
+                    document.getElementById("maintext").innerHTML = "\n\
+            <div class='contact-box  add'>\n\
+                <div class='content add2'>" +
+                        json.data[i].content +
+                        "</div>\n\
+                &nbsp;\n\
+            </div>"
+                }
+        }
+       
+    </script>
+    <style>
+    </style>
+</body>
+
+</html>
